@@ -38,7 +38,7 @@ if __name__ == '__main__':
         temp = temp.next
     #    r = r+1
     # llist.head.next = second;  # Link first node with second
-    # second.next = third;  # Link second node with the third node
+    # second.next = third;  # Link second node with the third node ww
     print (llist.head.data.data)
     temp = llist.head
 
