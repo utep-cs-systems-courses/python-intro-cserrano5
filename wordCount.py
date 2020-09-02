@@ -14,24 +14,17 @@ if __name__ == '__main__':
         print("Correct usage: wordCount.py <input text file> <output file>")
         exit()
 
-    # attempt to open input file and write in it
+    # will open input file and write in it
     with open(input_file_name, 'r') as inputFile:
         for line in inputFile:
-            # Remove the leading spaces and newline character
-            line = line.strip()
-
-            # Convert the characters in line to lowercase to avoid case mismatch
-            line = line.lower()
+            line = line.strip()     # this will remove the leading spaces and newline character
+            line = line.lower()     # this will convert characters in line to lowercase, avoid case mismatch
             line = re.sub("-", " ", line)
-            # Remove the punctuation marks from the line and hy
-            line = re.sub(r"[,.;@#?!&$]+\ *", " ", line)
 
+            line = re.sub(r"[,.;@#?!&$]+\ *", " ", line)   # removes punctuation marks from the line
             line = line.translate(line.maketrans("", "", string.punctuation))
 
-            # split line on whitespace and punctuation
-            #line = re.sub('\w+(?:-\w+)*', ' ', line)
             words = re.split('[ \t]', line)
-            # print(words)
             for word in words:
                 if word == "":
                     break
