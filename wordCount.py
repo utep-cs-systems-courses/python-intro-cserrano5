@@ -1,47 +1,45 @@
-# Node class
-class Node:
+# Imported Libraries
+import sys
+import re
+import string
 
-    # Function to initialize the node object
-    def __init__(self, data):
-        self.data = data  # Assign data
-        self.next = None  # Initialize
-        # next as null
-        self.wordCount = 1
+input_file_name = sys.argv[1]
+output_file_name = sys.argv[2]
 
+# Word dictionary
+dictionary = {}
 
-# Linked List class
-class LinkedList:
-
-    # Function to initialize the Linked
-    # List object
-    def __init__(self):
-        self.head = None
-
-
-# Code execution starts here
 if __name__ == '__main__':
-    # Start with the empty list
-    llist = LinkedList()
+    if len(sys.argv) != 3:
+        print("Correct usage: wordCount.py <input text file> <output file>")
+        exit()
 
-    f = open("speech.txt", "r")
-    x = (f.readline())
-    x = x.split()
-    print(x)
-    print("Hello world")
+    # attempt to open input file and write in it
+    with open(input_file_name, 'r') as inputFile:
+        for line in inputFile:
+            # Remove the leading spaces and newline character
+            line = line.strip()
 
-    llist.head = Node(x[0])
-    temp = llist.head
-    r = 0
-    for r in x:
-        temp.data = Node(r)
-        temp.next = Node("end")
-        temp = temp.next
-    #    r = r+1
-    # llist.head.next = second;  # Link first node with second
-    # second.next = third;  # Link second node with the third node ww
-    print (llist.head.data.data)
-    temp = llist.head
+            # Convert the characters in line to lowercase to avoid case mismatch
+            line = line.lower()
+            line = re.sub("-", " ", line)
+            # Remove the punctuation marks from the line and hy
+            line = re.sub(r"[,.;@#?!&$]+\ *", " ", line)
 
-    while temp.next.next is not None:
-        print (temp.data.data)
-        temp = temp.next
+            line = line.translate(line.maketrans("", "", string.punctuation))
+
+            # split line on whitespace and punctuation
+            #line = re.sub('\w+(?:-\w+)*', ' ', line)
+            words = re.split('[ \t]', line)
+            # print(words)
+            for word in words:
+                if word == "":
+                    break
+                if word in dictionary:
+                    dictionary[word] = dictionary[word] + 1
+                else:
+                    dictionary[word] = 1
+    with open(output_file_name, "w")as outputFile:
+        for word in sorted(dictionary):
+            outputFile.write(word + " " + str(dictionary[word]) + "\n")
+    outputFile.close()
