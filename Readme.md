@@ -1,3 +1,24 @@
+Added to this readme as mentioned in a post on teams.
+To run this program, you will have to open a terminal window and be in the correct 
+path. You will then run the following command to test the program and compare them 
+with the key file of the designated file.
+
+python3 wordCountTest.py speech.txt outfile.txt speechKey.txt
+
+This command will run the test that determines if the program works and what areas
+the program fails.
+
+This program reads from a given file and it creates a dictionary list
+of the words used in the file. It will list the words along with the number
+of times the words appears in the file.
+
+
+*****************************************************************
+
+
+
+
+
 This repository contains the code for the python introduction lab. The
 purpose is to have a fairly simple python assignment that introduces
 the basic features and tools of python
